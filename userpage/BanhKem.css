@@ -1,0 +1,106 @@
+nav.navbar{
+    background-color: #b1c23c;
+}
+li a.menu{
+    color: white;
+}
+ul.menu2{ 
+    background-color: #b1c23c;
+    border-radius: 12px 12px 12px 12px;
+    border: #b1c23c;
+}
+ul.menu2 li a{
+    color: white;
+}
+ul.menu2 li{ 
+    margin-top: 8px;
+    height: 33px;  
+}
+div ul li:hover ul.menu2 li{
+    display: block;
+}
+a {
+    text-decoration: none;
+}
+img.carousel{
+    height: 450px;
+}
+div.row div.px {
+    border: 1px solid rgb(206, 192, 192);
+}
+img.sanpham{
+    width: 80%;
+    max-height: 300px;
+}
+img.sanpham:hover{
+    transform: translateY(-20px);
+}
+h5 a.tensanpham{
+    color: rgb(184, 71, 90);
+    text-decoration: none;
+}
+h5 a.tensanpham:hover{
+    color: rgb(226, 9, 143);
+}
+b.gia{
+    color: rgb(247, 137, 27);
+}
+div.khung{
+    background-color: rgb(231, 216, 216);
+}
+p.stt{
+    margin: 4px;
+}
+p.stt a{
+    text-decoration: none;
+    color: rgb(94, 84, 86);
+}
+p.stt a:hover {
+    color: rgb(14, 18, 19);
+}
+button.btn{
+    background-color: #a3c1c7;
+}
+p.ttlh:hover {
+    transform: scale(0.9);
+}
+a.chinhsach{
+    color: white;
+}
+ul.footer-menu{
+    margin-top: -15px;
+}
+div.footer-col{
+    margin-top: -20px;
+}
+button.đk{
+    background-color:black;
+}
+section.z {
+    margin-top: -47px;
+}
+div.icon1 {
+    margin-top: -50px;
+}
+input.noidung {
+    height: 70px;
+}
+textarea {
+    width: 300px;
+}
+a.chat {
+    text-decoration: none;
+}
+img.chat {
+    width: 25px;
+}
+p.a {
+    color: #cada67;
+    margin-top: 30px;
+}
+footer {
+    background-image: url(./img/footer.jpg);
+}
+img.chat:hover{
+    transform: scale(0.8);
+}

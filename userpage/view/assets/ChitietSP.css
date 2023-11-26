@@ -1,5 +1,5 @@
 nav.navbar{
-    background-color: #b1c23c;
+    background-image: url(../img/footer.jpg);
 }
 li a.menu{
     color: white;
@@ -63,7 +63,7 @@ p.a {
     margin-top: 30px;
 }
 footer {
-    background-image: url(./img/footer.jpg);
+    background-image: url(../img/footer.jpg);
 }
 img.chat:hover{
     transform: scale(0.8);

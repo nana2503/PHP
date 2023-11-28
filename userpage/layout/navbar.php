@@ -17,7 +17,7 @@ include("C:/wamp64/www/DOANPHP/userpage/utlils/connectDB.php");
                     <a class="menu" href="DanhMuc.php">SẢN PHẨM</a>
                 </li>
                 <li class="nav-item nav-link">
-                    <a class="menu" href="GioHang.html">GIỎ HÀNG</a>
+                    <a class="menu" href="../view/GioHang.php">GIỎ HÀNG</a>
                 </li>
                 <li class="nav-item nav-link">
                     <a class="menu" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php

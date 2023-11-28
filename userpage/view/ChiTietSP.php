@@ -21,7 +21,7 @@
 <body>
   <?php include("../layout/navbar.php");
   $id = $_GET["id"] ?? "";
-  $stm = $pdo->query('select * from Product where Category_Id = ' . $id);
+  $stm = $pdo->query('select * from Product where Product_Id = ' . $id);
   $data = $stm->fetchAll(PDO::FETCH_ASSOC);
   ?>
   <div class="breadcrumb-shop">

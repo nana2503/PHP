@@ -43,8 +43,8 @@ $data = $stm->fetchAll(PDO::FETCH_ASSOC);
         <?php foreach ($data as $item) { ?>
             <div class="px col-lg-3 col-md-3 col-sm-6">
                 <div class="text-center my-4">
-                    <a href="ChiTietSP.php?id=<?php echo $item['Category_Id']?>"><img src="../../adminpage/ElaAdmin/upload/<?php echo $item['Product_FirstImg']?>" class="sanpham dont_scale wow animated fadeInDown" data-animation="fadeInDown" alt=""></a>
-                    <h5><a class="tensanpham" href="ChiTietSP.php?id=<?php echo $item['Category_Id']?>"><?php echo $item["Product_Name"]?></a></h5>
+                    <a href="ChiTietSP.php?id=<?php echo $item['Product_Id']?>"><img src="../../adminpage/ElaAdmin/upload/<?php echo $item['Product_FirstImg']?>" class="sanpham dont_scale wow animated fadeInDown" data-animation="fadeInDown" alt=""></a>
+                    <h5><a class="tensanpham" href="ChiTietSP.php?id=<?php echo $item['Product_Id']?>"><?php echo $item["Product_Name"]?></a></h5>
                 </div>
             </div>
         <?php

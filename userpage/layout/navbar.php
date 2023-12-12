@@ -1,7 +1,9 @@
 <?php 
 include("C:/wamp64/www/DOANPHP/userpage/utlils/connectDB.php");
+session_start();
 ?>
 <nav class="navbar navbar-expand-lg navbar-light">
+
     <div class="container">
         <img src="../img/logo.webp" style="width:130px; margin-top: 2px;">
         <li class="nav-item nav-link" style="padding: 0 80px;"></li>
@@ -17,12 +19,25 @@ include("C:/wamp64/www/DOANPHP/userpage/utlils/connectDB.php");
                     <a class="menu" href="DanhMuc.php">SẢN PHẨM</a>
                 </li>
                 <li class="nav-item nav-link">
-                    <a class="menu" href="../view/GioHang.php">GIỎ HÀNG</a>
+                    
+                    
+                    <?php 
+                    $sql = "SELECT * FROM cart join order_tbl on cart.order_id = order_tbl.order_id where order_tbl.state = 1 and order_tbl.customer_id = ?";
+                    $stm = $pdo->prepare($sql); 
+                    $stm->execute([$_SESSION['customer_id']]);
+                    $data = $stm->fetch(PDO::FETCH_ASSOC);
+
+                    if($data) {?>
+                        <?php $order_id = $data['Order_Id']?>
+                        <a class="menu" href="../view/GioHang.php?id=<?php echo $order_id?>">GIỎ HÀNG</a>
+                    <?php } else {?>
+                        <a class="menu" href="../view/GioHang.php?id=<?php echo $order_id?>">GIỎ HÀNG</a>
+                    <?php } ?>
                 </li>
                 <li class="nav-item nav-link">
                     <a class="menu" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php
-                    session_start();
-                    if (isset($_SESSION['name'])) {
+
+                    if (isset($_SESSION['name']) || isset($_SESSION['customer_id'])) {
                         echo "Xin chào, " . $_SESSION['name'] . "! 
                         <br>
                         <li class='nav-item nav-link' >                                              

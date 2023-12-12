@@ -17,6 +17,21 @@
 <hrad>
   <link rel="stylesheet" type="text/css" href="assets/TrangChu.css">
 </hrad>
+<script>
+  function minusQuantity() {
+    var quantityInput = document.getElementById('quantity');
+    var currentQuantity = parseInt(quantityInput.value);
+    if (currentQuantity > 1) {
+      quantityInput.value = currentQuantity - 1;
+    }
+  }
+
+  function plusQuantity() {
+    var quantityInput = document.getElementById('quantity');
+    var currentQuantity = parseInt(quantityInput.value);
+    quantityInput.value = currentQuantity + 1;
+  }
+</script>
 
 <body>
   <?php include("../layout/navbar.php");
@@ -41,7 +56,9 @@
             </li>
             <li class="active" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
               <span itemprop="item" content="https://www.freshgarden.vn/products/banh-kem-forever-love-8-banh-kem-forever-love">
-                <span itemprop="name"><?php foreach($data as $item) {echo $item['Product_Name'];}?></span>
+                <span itemprop="name"><?php foreach ($data as $item) {
+                                        echo $item['Product_Name'];
+                                      } ?></span>
               </span>
               <meta itemprop="position" content="3">
             </li>
@@ -53,7 +70,7 @@
   <?php foreach ($data as $item) { ?>
     <div class="container py-5">
       <div class="row">
-        <div class="col-12 col-lg-9">
+        <div class="col-12 col-lg-12">
           <div class="row product-detail-main mb-5">
             <div class="col-lg-6 col-sm-12 col-xs-12 product-content-img">
               <div class="product-gallery">
@@ -85,31 +102,43 @@
             </div>
             <div class="col-lg-6 col-sm-12 col-xs-12 product-content-desc" id="detail-product">
               <div class="product-title">
-                <h1><?php echo $item["Product_Name"]?></h1>
+                <h1><?php echo $item["Product_Name"] ?></h1>
               </div>
               <div>
-                <p><b>Thông Tin Sản Phẩm:</b><?php echo $item['Product_Desc']?></p>
+                <p><b>Thông Tin Sản Phẩm: </b><?php echo $item['Product_Desc'] ?></p>
               </div>
               <div>
-                <p><b>Tình Trạng:</b> <?php echo $item['Stock']?> </p>
+                <p><b>Số lượng:</b> <?php echo $item['Stock'] ?> </p>
               </div>
               <div class="product-price" id="price-preview">
-                <span class="pro-price"><?php echo $item['Price']?> đ</span>
+                <span class="pro-price"><?php echo $item['Price'] ?> đ</span>
               </div>
               <div class="selector-actions">
-                <div class="quantity-area clearfix">
-                  <input type="button" value="-" onclick="minusQuantity()" class="qty-btn">
-                  <input type="text" id="quantity" name="quantity" value="1" min="1" class="quantity-selector">
-                  <input type="button" value="+" onclick="plusQuantity()" class="qty-btn">
-                </div>
-                <div class="wrap-addcart">
-                  <button class="add-to-cartProduct btn btn-primary btn-addtocart" name="add">
-                    <a class="text-white" href="GioHang.html">Thêm vào giỏ</a>
-                  </button>
-                  <button class="add-to-cartProduct btn btn-dark btn-addtocart" name="add">
-                    <a class="text-white" href="">Mua ngay</a>
-                  </button>
-                </div>
+                <form action="../controller/cart.php" method="post">
+                  <input type="hidden" name="Product_Id" value="<?php echo $item["Product_Id"] ?>">
+
+                  <?php if (isset($_SESSION["customer_id"])) { ?>
+                    <input type="hidden" name="Customer_Id" value="<?php echo $_SESSION["customer_id"] ?>">
+                  <?php } else { ?>
+                    <div></div>
+                  <?php } ?>
+                  <input type="hidden" name="Product_Image" value="<?php echo $item["Product_FirstImg"] ?>">
+                  <div class="quantity-area clearfix">
+                    <input type="button" value="-" onclick="minusQuantity()" class="qty-btn">
+                    <input type="text" id="quantity" name="Product_quantity" value="1" min="1" class="quantity-selector">
+                    <input type="button" value="+" onclick="plusQuantity()" class="qty-btn">
+                  </div>
+                  <input type="hidden" name="Product_price" value="<?php echo $item['Price'] ?>">
+                  <input type="hidden" name="Product_Name" value="<?php echo $item['Product_Name'] ?>">
+                  <?php if (isset($_SESSION['order_id'])) { ?>
+                    <input type="hidden" name="Order_Id" value="<?php echo $_SESSION['order_id'] ?>">
+                  <?php } else { ?>
+                    <div></div>
+                  <?php } ?>
+                  <div class="wrap-addcart">
+                    <button class="" style="padding: 10px" type="submit" name="addCart">Thêm vào giỏ</button>
+                  </div>
+                </form>
               </div>
             </div>
           </div>

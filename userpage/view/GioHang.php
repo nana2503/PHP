@@ -38,7 +38,6 @@
 	<div class="container">
 		<div class="header-page text-center my-4">
 			<h2>Giỏ hàng của bạn</h2>
-			<p class="count-cart">Có 3 sản phẩm trong giỏ hàng</p>
 		</div>		
 		<div class="row">
 			<div class="col-md-12 col-sm-12 col-xs-12">
@@ -79,9 +78,6 @@
 						</td>
 						<td class="qty">
 							<div class="qty quantity-partent qty-click clearfix" style="padding: 0 38px;">
-								<!-- <button type="button" class="qtyminus qty-btn">-</button>
-								<input type="text" size="4" name="updates[]" min="1" id="updates_1078680742" data-price="29454500" value="1"   class="tc line-item-qty item-quantity bg-white" />
-								<button type="button" class="qtyplus qty-btn">+</button>															 -->
 								<p><span class="price"><?php echo $item["Product_Qty"]?></span></p>
 							</div>
 						</td>
@@ -93,7 +89,7 @@
 							</p>
 						</td>
 						<td class="remove">
-							<a href="/cart/change?line=1&quantity=0" class="cart">
+							<a href="../controller/removeItem.php?item_id=<?php echo $item['cart_id']?>&order_id=<?php echo $order_id?>" class="cart">
 								<img src="../img/ic_X.webp"/>
 							</a>
 						</td>
@@ -112,17 +108,9 @@
 						<p>Tổng tiền: <span class="total-price"><?php echo $tongTien?> đ</span></p>
 					</div>
 					<div class="sidebox-order_action my-2">
-						<a class="btn btn-dark btncart-checkout" href="../controller/buyButton.php">THANH TOÁN</a>
-						<p class="link-continue">
-							<a class="quaylai"  href="BanhKem.html">
-								<i class="fa fa-reply"></i> Tiếp tục mua hàng
-							</a>
-						</p>
+						<?php $order_id=$_GET['id']?>
+						<a class="btn btn-dark btncart-checkout" href="../controller/buyButton.php?id=<?php echo $order_id?>&total=<?php echo $tongTien?>">THANH TOÁN</a>
 					</div>
-				</div>
-				<div class="cart-buttons hidden">
-					<button type="submit" id="update-cart" class="btn-update button dark hidden" name="update" value="" >Cập nhật</button>
-					<button type="submit" id="checkout" class="btn-checkout button dark hidden" name="checkout" value="" >Thanh toán</button>
 				</div>
 			</div>
 		</div>

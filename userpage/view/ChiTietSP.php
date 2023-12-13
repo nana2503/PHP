@@ -122,6 +122,7 @@
                   <?php } else { ?>
                     <div></div>
                   <?php } ?>
+
                   <input type="hidden" name="Product_Image" value="<?php echo $item["Product_FirstImg"] ?>">
                   <div class="quantity-area clearfix">
                     <input type="button" value="-" onclick="minusQuantity()" class="qty-btn">
@@ -130,11 +131,24 @@
                   </div>
                   <input type="hidden" name="Product_price" value="<?php echo $item['Price'] ?>">
                   <input type="hidden" name="Product_Name" value="<?php echo $item['Product_Name'] ?>">
-                  <?php if (isset($_SESSION['order_id'])) { ?>
-                    <input type="hidden" name="Order_Id" value="<?php echo $_SESSION['order_id'] ?>">
-                  <?php } else { ?>
-                    <div></div>
-                  <?php } ?>
+                  <?php
+                  if (isset($_SESSION['customer_id'])) {
+                    $sql = "SELECT * FROM order_tbl WHERE State = 1 AND customer_id = ?";
+                    $stm = $pdo->prepare($sql);
+                    $stm->execute([$_SESSION['customer_id']]);
+                    $data = $stm->fetch(PDO::FETCH_ASSOC);
+
+                    if (is_array($data) && !empty($data)) {
+                      $lastOrderId = $data['Order_Id'];
+                    } else {
+                      $lastOrderId = null;
+                    }
+                  } else { 
+                    $lastOrderId = "hehe";
+                  }
+                  ?>
+
+                  <input type="hidden" name="Order_Id" value="<?php echo $lastOrderId ?>">
                   <div class="wrap-addcart">
                     <button class="" style="padding: 10px" type="submit" name="addCart">Thêm vào giỏ</button>
                   </div>

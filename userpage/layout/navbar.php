@@ -1,4 +1,4 @@
-<?php 
+<?php
 include("C:/wamp64/www/DOANPHP/userpage/utlils/connectDB.php");
 session_start();
 ?>
@@ -19,35 +19,54 @@ session_start();
                     <a class="menu" href="DanhMuc.php">SẢN PHẨM</a>
                 </li>
                 <li class="nav-item nav-link">
-                    
-                    
-                    <?php 
-                    $sql = "SELECT * FROM cart join order_tbl on cart.order_id = order_tbl.order_id where order_tbl.state = 1 and order_tbl.customer_id = ?";
-                    $stm = $pdo->prepare($sql); 
-                    $stm->execute([$_SESSION['customer_id']]);
-                    $data = $stm->fetch(PDO::FETCH_ASSOC);
 
-                    if($data) {?>
-                        <?php $order_id = $data['Order_Id']?>
-                        <a class="menu" href="../view/GioHang.php?id=<?php echo $order_id?>">GIỎ HÀNG</a>
-                    <?php } else {?>
-                        <a class="menu" href="../view/GioHang.php?id=<?php echo $order_id?>">GIỎ HÀNG</a>
-                    <?php } ?>
+                    <?php
+                    if (isset($_SESSION['customer_id'])) {
+                        // Truy vấn để lấy đơn đặt hàng với state = 1
+                        $sql = "SELECT * FROM order_tbl WHERE state = 1 AND customer_id = ?";
+                        $stmt = $pdo->prepare($sql);
+                        $stmt->execute([$_SESSION['customer_id']]);
+                        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                        // Truy vấn để lấy tất cả đơn đặt hàng với state = 0
+                        $sql = "SELECT * FROM order_tbl WHERE state = 0 AND customer_id = ?";
+                        $stmt = $pdo->prepare($sql);
+                        $stmt->execute([$_SESSION['customer_id']]);
+                        $newData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                        if ($data) {
+                            // Sử dụng Order_Id của đơn đặt hàng có state = 1
+                            $order_id = $data['Order_Id'];
+                            echo "<a class='menu' href='../view/GioHang.php?id={$order_id}'>GIỎ HÀNG</a>";
+                        } else if (!empty($newData)) {
+                            // Lấy Order_Id của đơn đặt hàng cuối cùng có state = 0
+                            $lastOrderId = end($newData)['Order_Id'];
+                            echo "<a class='menu' href='../view/GioHang.php?id={$lastOrderId}'>GIỎ HÀNG</a>";
+                        } else {
+                            echo "<div>Giỏ hàng trống</div>";
+                        }
+                    } else {
+                        echo "<div></div>";
+                    }
+                    ?>
+
+
+                    <!-- 3 trang thai, khi chua dang nhap, khi dang nhap chua dat hang va dat hang -->
                 </li>
                 <li class="nav-item nav-link">
                     <a class="menu" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php
 
-                    if (isset($_SESSION['name']) || isset($_SESSION['customer_id'])) {
-                        echo "Xin chào, " . $_SESSION['name'] . "! 
+                                                                                                                if (isset($_SESSION['name']) || isset($_SESSION['customer_id'])) {
+                                                                                                                    echo "Xin chào, " . $_SESSION['name'] . "! 
                         <br>
                         <li class='nav-item nav-link' >                                              
                             <a class='menu' href='../../../DOANPHP/adminpage/ElaAdmin/controller/LogoutController.php'>ĐĂNG XUẤT</a>
                         </div>
                         </li>";
-                    } else {
-                        echo "<a class='menu' href='../../../DOANPHP/adminpage/ElaAdmin/view/login.php'>ĐĂNG NHẬP | ĐĂNG KÝ</a>";
-                    }
-                    ?></a>
+                                                                                                                } else {
+                                                                                                                    echo "<a class='menu' href='../../../DOANPHP/adminpage/ElaAdmin/view/login.php'>ĐĂNG NHẬP | ĐĂNG KÝ</a>";
+                                                                                                                }
+                                                                                                                ?></a>
                 </li>
             </ul>
         </div>

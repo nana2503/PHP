@@ -11,7 +11,7 @@
                     <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
                     <p class="a text-uppercase fw-bold mb-4"> Thông tin sinh viên thực hiện</p>
                         <p class="text-white"><i class="bi bi-phone"></i>Họ và tên: Lê Đức Tài</p>
-                        <p class="text-white"><i class="bi bi-phone"></i>MSSV: DH5200</p>
+                        <p class="text-white"><i class="bi bi-phone"></i>MSSV: DH52003324</p>
                         <p class="text-white"><i class="bi bi-phone"></i>Lớp: D20_TH03</p>
                     </div>
                 </div>

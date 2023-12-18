@@ -54,19 +54,18 @@ session_start();
                     <!-- 3 trang thai, khi chua dang nhap, khi dang nhap chua dat hang va dat hang -->
                 </li>
                 <li class="nav-item nav-link">
-                    <a class="menu" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php
-
-                                                                                                                if (isset($_SESSION['name']) || isset($_SESSION['customer_id'])) {
-                                                                                                                    echo "Xin chào, " . $_SESSION['name'] . "! 
-                        <br>
-                        <li class='nav-item nav-link' >                                              
-                            <a class='menu' href='../../../DOANPHP/adminpage/ElaAdmin/controller/LogoutController.php'>ĐĂNG XUẤT</a>
-                        </div>
-                        </li>";
-                                                                                                                } else {
-                                                                                                                    echo "<a class='menu' href='../../../DOANPHP/adminpage/ElaAdmin/view/login.php'>ĐĂNG NHẬP | ĐĂNG KÝ</a>";
-                                                                                                                }
-                                                                                                                ?></a>
+                    <a class="menu" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <?php
+                        if (isset($_SESSION['name']) || isset($_SESSION['customer_id'])) {
+                            echo "Xin chào, " . $_SESSION['name'] . "! 
+                            <br>
+                            <li class='nav-item nav-link' >                                              
+                                <a class='menu' href='../../../DOANPHP/adminpage/ElaAdmin/controller/LogoutController.php'>ĐĂNG XUẤT</a>
+                            </li>";
+                        } else {
+                            echo "<a class='menu' href='../../../DOANPHP/adminpage/ElaAdmin/view/login.php'>ĐĂNG NHẬP | ĐĂNG KÝ</a>";
+                        }
+                        ?></a>
                 </li>
             </ul>
         </div>
